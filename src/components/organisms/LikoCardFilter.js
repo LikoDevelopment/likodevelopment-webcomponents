@@ -29,9 +29,7 @@ class LikoCardFilter extends HTMLElement {
     render() {
         this.innerHTML = "";
 
-        const allTags = [
-            ...new Set(this.cards.flatMap((card) => (card.tags || []).map((t) => t.label))),
-        ].sort();
+        const allTags = [...new Set(this.cards.flatMap((card) => (card.tags || []).map((t) => t.label)))].sort();
 
         const wrapper = document.createElement("div");
         wrapper.className = tw`font-nunito-sans`;
@@ -60,9 +58,7 @@ class LikoCardFilter extends HTMLElement {
     getFilteredCards() {
         const active = this._activeTags || [];
         if (active.length === 0) return this.cards;
-        return this.cards.filter((card) =>
-            (card.tags || []).some((t) => active.includes(t.label)),
-        );
+        return this.cards.filter((card) => (card.tags || []).some((t) => active.includes(t.label)));
     }
 
     updateGrid() {

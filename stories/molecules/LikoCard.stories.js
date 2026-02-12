@@ -57,10 +57,7 @@ export const WithTags = {
         text: "This card displays tags between the image and the content.",
         imageSrc: "https://placehold.co/600x400",
         imageAlt: "Placeholder image",
-        tags: [
-            { label: "Nature" },
-            { label: "Adventure" },
-        ],
+        tags: [{ label: "Nature" }, { label: "Adventure" }],
     },
 };
 
@@ -71,10 +68,6 @@ export const WithTagsAndButton = {
         imageSrc: "https://placehold.co/600x400",
         imageAlt: "Placeholder image",
         buttonLabel: "Learn More",
-        tags: [
-            { label: "Featured" },
-            { label: "New" },
-            { label: "Popular" },
-        ],
+        tags: [{ label: "Featured" }, { label: "New" }, { label: "Popular" }],
     },
 };

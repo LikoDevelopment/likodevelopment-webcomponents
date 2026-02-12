@@ -20,14 +20,14 @@ class LikoTag extends HTMLElement {
         const toggleable = this.hasAttribute("toggleable");
         const active = this.hasAttribute("active");
 
-        const baseClasses = tw`inline-block rounded-lg font-nunito-sans text-xs font-semibold leading-none`;
+        const baseClasses = tw`inline-block rounded-lg font-nunito-sans text-xs leading-none font-semibold`;
 
-        const modeClasses = active
-            ? tw`bg-foreground-80 text-white`
-            : tw`bg-background-60 text-text`;
+        const modeClasses = active ? tw`bg-foreground-80 text-white` : tw`bg-background-60 text-text`;
 
         const interactiveClasses = toggleable
-            ? tw`cursor-pointer select-none transition-colors`
+            ? active
+                ? tw`cursor-pointer transition-colors select-none hover:bg-foreground-60`
+                : tw`cursor-pointer transition-colors select-none hover:bg-background-80`
             : ``;
 
         this.innerHTML = "";
@@ -43,10 +43,12 @@ class LikoTag extends HTMLElement {
                 } else {
                     this.setAttribute("active", "");
                 }
-                this.dispatchEvent(new CustomEvent("toggle", {
-                    bubbles: true,
-                    detail: { label, active: this.hasAttribute("active") },
-                }));
+                this.dispatchEvent(
+                    new CustomEvent("toggle", {
+                        bubbles: true,
+                        detail: { label, active: this.hasAttribute("active") },
+                    }),
+                );
             });
         }
 

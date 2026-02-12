@@ -40,11 +40,11 @@ class LikoFilterBar extends HTMLElement {
         const label = this.getAttribute("label");
 
         const wrapper = document.createElement("div");
-        wrapper.className = tw`flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4`;
+        wrapper.className = tw`mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4`;
 
         if (label) {
             const labelEl = document.createElement("span");
-            labelEl.className = tw`font-nunito-sans text-sm font-semibold text-foreground-80`;
+            labelEl.className = tw`font-nunito-sans text-base font-semibold`;
             labelEl.textContent = label;
             wrapper.appendChild(labelEl);
         }
@@ -66,10 +66,12 @@ class LikoFilterBar extends HTMLElement {
                 } else {
                     this._activeTags = this.activeTags.filter((t) => t !== label);
                 }
-                this.dispatchEvent(new CustomEvent("filter-change", {
-                    bubbles: true,
-                    detail: { activeTags: this._activeTags },
-                }));
+                this.dispatchEvent(
+                    new CustomEvent("filter-change", {
+                        bubbles: true,
+                        detail: { activeTags: this._activeTags },
+                    }),
+                );
             });
             tagsWrapper.appendChild(el);
         }

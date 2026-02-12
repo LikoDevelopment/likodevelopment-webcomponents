@@ -36,7 +36,7 @@ class LikoCard extends HTMLElement {
         this.innerHTML = "";
 
         const card = document.createElement("div");
-        card.className = tw`overflow-hidden rounded-lg border border-border bg-background-100 shadow-sm`;
+        card.className = tw`flex h-full flex-col overflow-hidden rounded-lg border border-border bg-background-100 shadow-sm`;
 
         if (imageSrc) {
             const img = document.createElement("img");
@@ -56,7 +56,7 @@ class LikoCard extends HTMLElement {
         }
 
         const body = document.createElement("div");
-        body.className = tw`p-5`;
+        body.className = tw`flex grow flex-col p-5`;
 
         if (heading) {
             const h3 = document.createElement("h3");
@@ -73,7 +73,7 @@ class LikoCard extends HTMLElement {
 
         if (buttonLabel) {
             const buttonWrapper = document.createElement("div");
-            buttonWrapper.className = tw`mt-4`;
+            buttonWrapper.className = tw`mt-auto pt-4`;
             const btn = LikoButtonExport({
                 label: buttonLabel,
                 size: "medium",
