@@ -28,7 +28,7 @@ class LikoTag extends HTMLElement {
             ? active
                 ? tw`cursor-pointer transition-colors select-none hover:bg-foreground-60`
                 : tw`cursor-pointer transition-colors select-none hover:bg-background-80`
-            : ``;
+            : "";
 
         this.innerHTML = "";
 
