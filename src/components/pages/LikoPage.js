@@ -39,7 +39,7 @@ class LikoPage extends HTMLElement {
     <h2>Pages in Storybook</h2>
     <p class="${tw`my-4`}">
       We recommend building UIs with a
-      <a href="https://componentdriven.org" target="_blank" rel="noopener noreferrer" class="${tw`text-inherit no-underline`}">
+      <a href="https://componentdriven.org" target="_blank" rel="noopener noreferrer">
         <strong>component-driven</strong> </a
       >process starting with atomic components and ending with pages.
     </p>
@@ -60,11 +60,11 @@ class LikoPage extends HTMLElement {
     </ul>
     <p class="${tw`my-4`}">
       Get a guided tutorial on component-driven development at
-      <a href="https://storybook.js.org/tutorials/" target="_blank" rel="noopener noreferrer" class="${tw`text-inherit no-underline`}">
+      <a href="https://storybook.js.org/tutorials/" target="_blank" rel="noopener noreferrer">
         Storybook tutorials
       </a>
       . Read more in the
-      <a href="https://storybook.js.org/docs" target="_blank" rel="noopener noreferrer" class="${tw`text-inherit no-underline`}"> docs </a>
+      <a href="https://storybook.js.org/docs" target="_blank" rel="noopener noreferrer"> docs </a>
       .
     </p>
     <div class="${tw`my-10 text-[13px] leading-5`}">
