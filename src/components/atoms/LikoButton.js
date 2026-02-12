@@ -36,8 +36,8 @@ class LikoButton extends HTMLElement {
         }
 
         const modeClasses = primary
-            ? tw`bg-[#555ab9] text-white`
-            : tw`bg-transparent text-[#333] shadow-[rgba(0,0,0,0.15)_0px_0px_0px_1px_inset]`;
+            ? tw`bg-foreground-100 text-white hover:bg-foreground-80`
+            : tw`bg-background-60 text-text hover:bg-background-80`;
 
         this.innerHTML = "";
 
