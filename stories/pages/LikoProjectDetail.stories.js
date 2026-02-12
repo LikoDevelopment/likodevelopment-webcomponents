@@ -10,11 +10,10 @@ export default {
         title: { control: "text" },
         subtitle: { control: "text" },
         description: { control: "text" },
-        buttonLabel: { control: "text" },
+        buttons: { control: "object" },
         metaItems: { control: "object" },
         cards: { control: "object" },
     },
-    args: { onButtonClick: fn() },
 };
 
 export const Default = {
@@ -23,7 +22,10 @@ export const Default = {
         subtitle: "A luxury mountain getaway",
         description:
             "Nestled in the heart of the Swiss Alps, this resort offers an unparalleled experience of nature and comfort. Every detail has been carefully crafted to provide guests with a serene escape from the everyday hustle.",
-        buttonLabel: "Visit Project",
+        buttons: [
+            { label: "Visit Project", primary: true, onClick: fn() },
+            { label: "Contact Us", onClick: fn() },
+        ],
         metaItems: [
             { label: "Client", value: "Alpine Hospitality Group" },
             { label: "Year", value: "2025" },

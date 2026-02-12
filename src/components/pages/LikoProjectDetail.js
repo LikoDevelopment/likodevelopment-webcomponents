@@ -1,11 +1,20 @@
 import { tw } from "../../utils/tw.js";
 import "../molecules/LikoMetaList";
+import "../molecules/LikoButtonList";
 import "../organisms/LikoCardStack";
-import { LikoButtonExport } from "../atoms/LikoButton";
 
 class LikoProjectDetail extends HTMLElement {
     static get observedAttributes() {
-        return ["title", "subtitle", "description", "button-label"];
+        return ["title", "subtitle", "description"];
+    }
+
+    get buttons() {
+        return this._buttons || [];
+    }
+
+    set buttons(value) {
+        this._buttons = value;
+        if (this.isConnected) this.render();
     }
 
     get metaItems() {
@@ -40,7 +49,6 @@ class LikoProjectDetail extends HTMLElement {
         const title = this.getAttribute("title") || "";
         const subtitle = this.getAttribute("subtitle") || "";
         const description = this.getAttribute("description") || "";
-        const buttonLabel = this.getAttribute("button-label") || "";
 
         this.innerHTML = "";
 
@@ -83,17 +91,11 @@ class LikoProjectDetail extends HTMLElement {
             main.appendChild(p);
         }
 
-        if (buttonLabel) {
-            const btnWrapper = document.createElement("div");
-            btnWrapper.className = tw`mb-10`;
-            const btn = LikoButtonExport({
-                label: buttonLabel,
-                primary: true,
-                size: "large",
-                onClick: () => this.dispatchEvent(new CustomEvent("button-click", { bubbles: true })),
-            });
-            btnWrapper.appendChild(btn);
-            main.appendChild(btnWrapper);
+        if (this.buttons.length > 0) {
+            const btnList = document.createElement("liko-button-list");
+            btnList.className = tw`mb-10`;
+            btnList.buttons = this.buttons;
+            main.appendChild(btnList);
         }
 
         if (this.cards.length > 0) {
@@ -117,17 +119,15 @@ export const LikoProjectDetailExport = ({
     title,
     subtitle,
     description,
-    buttonLabel,
+    buttons = [],
     metaItems = [],
     cards = [],
-    onButtonClick,
 }) => {
     const el = document.createElement("liko-project-detail");
     if (title) el.setAttribute("title", title);
     if (subtitle) el.setAttribute("subtitle", subtitle);
     if (description) el.setAttribute("description", description);
-    if (buttonLabel) el.setAttribute("button-label", buttonLabel);
-    if (onButtonClick) el.addEventListener("button-click", onButtonClick);
+    el.buttons = buttons;
     el.metaItems = metaItems;
     el.cards = cards;
     return el;
