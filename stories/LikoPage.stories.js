@@ -1,8 +1,8 @@
 import * as LikoHeaderStories from "./LikoHeader.stories";
-import { LikoPageExport } from "@/components/LikoPage";
+import { LikoPageExport } from "@/components/pages/LikoPage";
 
 export default {
-    title: "Liko/LikoPage",
+    title: "Pages/LikoPage",
     render: (args) => LikoPageExport(args),
 };
 

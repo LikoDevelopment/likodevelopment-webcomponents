@@ -1,4 +1,4 @@
-import { tw } from "../utils/tw.js";
+import { tw } from "../../utils/tw.js";
 
 class LikoButton extends HTMLElement {
     static get observedAttributes() {

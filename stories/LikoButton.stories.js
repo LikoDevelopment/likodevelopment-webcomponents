@@ -1,10 +1,10 @@
 import { fn } from "storybook/test";
 
-import { LikoButtonExport } from "@/components/LikoButton";
+import { LikoButtonExport } from "@/components/atoms/LikoButton";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-    title: "Liko/LikoButton",
+    title: "Atoms/LikoButton",
     tags: ["autodocs"],
     render: (args) => LikoButtonExport(args),
     argTypes: {

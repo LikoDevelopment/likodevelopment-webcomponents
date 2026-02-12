@@ -1,5 +1,5 @@
-import { tw } from "../utils/tw.js";
-import "./LikoHeader";
+import { tw } from "../../utils/tw.js";
+import "../molecules/LikoHeader";
 
 class LikoPage extends HTMLElement {
     get user() {

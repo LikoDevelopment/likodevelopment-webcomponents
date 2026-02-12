@@ -2,18 +2,22 @@ import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import { readdirSync } from 'fs';
+import { readdirSync, statSync } from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Auto-discover component files from src/components/
+// Auto-discover component files from src/components/ subfolders (atoms, molecules, pages)
 const componentsDir = resolve(__dirname, 'src/components');
 const componentFiles = readdirSync(componentsDir)
-  .filter(file => file.endsWith('.js'))
-  .reduce((entries, file) => {
-    const name = file.replace('.js', '').toLowerCase();
-    entries[name] = resolve(componentsDir, file);
+  .filter(sub => statSync(resolve(componentsDir, sub)).isDirectory())
+  .flatMap(sub =>
+    readdirSync(resolve(componentsDir, sub))
+      .filter(file => file.endsWith('.js'))
+      .map(file => [file.replace('.js', '').toLowerCase(), resolve(componentsDir, sub, file)])
+  )
+  .reduce((entries, [name, path]) => {
+    entries[name] = path;
     return entries;
   }, {});
 

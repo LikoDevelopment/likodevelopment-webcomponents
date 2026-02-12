@@ -1,5 +1,5 @@
-import { tw } from "../utils/tw.js";
-import { LikoButtonExport } from "./LikoButton";
+import { tw } from "../../utils/tw.js";
+import { LikoButtonExport } from "../atoms/LikoButton";
 
 class LikoHeader extends HTMLElement {
     get user() {

@@ -1,8 +1,9 @@
-import { tw } from "../utils/tw.js";
+import { tw } from "../../utils/tw.js";
+import { LikoButtonExport } from "../atoms/LikoButton";
 
 class LikoCard extends HTMLElement {
     static get observedAttributes() {
-        return ["heading", "text", "image-src", "image-alt"];
+        return ["heading", "text", "image-src", "image-alt", "button-label"];
     }
 
     connectedCallback() {
@@ -20,6 +21,7 @@ class LikoCard extends HTMLElement {
         const text = this.getAttribute("text");
         const imageSrc = this.getAttribute("image-src");
         const imageAlt = this.getAttribute("image-alt") || "";
+        const buttonLabel = this.getAttribute("button-label");
 
         this.innerHTML = "";
 
@@ -51,6 +53,19 @@ class LikoCard extends HTMLElement {
             body.appendChild(p);
         }
 
+        if (buttonLabel) {
+            const buttonWrapper = document.createElement("div");
+            buttonWrapper.className = tw`mt-4`;
+            const btn = LikoButtonExport({
+                label: buttonLabel,
+                size: "medium",
+                primary: true,
+                onClick: () => this.dispatchEvent(new CustomEvent("button-click", { bubbles: true })),
+            });
+            buttonWrapper.appendChild(btn);
+            body.appendChild(buttonWrapper);
+        }
+
         card.appendChild(body);
         this.appendChild(card);
     }
@@ -60,11 +75,13 @@ if (!customElements.get("liko-card")) {
     customElements.define("liko-card", LikoCard);
 }
 
-export const LikoCardExport = ({ heading, text, imageSrc, imageAlt }) => {
+export const LikoCardExport = ({ heading, text, imageSrc, imageAlt, buttonLabel, onButtonClick }) => {
     const card = document.createElement("liko-card");
     if (heading) card.setAttribute("heading", heading);
     if (text) card.setAttribute("text", text);
     if (imageSrc) card.setAttribute("image-src", imageSrc);
     if (imageAlt) card.setAttribute("image-alt", imageAlt);
+    if (buttonLabel) card.setAttribute("button-label", buttonLabel);
+    if (onButtonClick) card.addEventListener("button-click", onButtonClick);
     return card;
 };
