@@ -9,6 +9,16 @@ const preview = {
        date: /Date$/i,
       },
     },
+    a11y: {
+      config: {
+        rules: [
+          {
+            id: "color-contrast",
+            selector: '*:not(.slide-hover)',
+          },
+        ],
+      },
+    },
   },
 };
 

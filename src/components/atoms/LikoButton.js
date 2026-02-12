@@ -36,18 +36,24 @@ class LikoButton extends HTMLElement {
         }
 
         const modeClasses = primary
-            ? tw`bg-foreground-100 text-white hover:bg-foreground-80`
-            : tw`bg-background-60 text-text hover:bg-background-80`;
+            ? tw`bg-foreground-80 text-white`
+            : tw`bg-background-80 text-text`;
+
+        const hoverBg = primary
+            ? "var(--color-foreground-100)"
+            : "var(--color-background-60)";
 
         this.innerHTML = "";
 
         const btn = document.createElement("button");
         btn.type = "button";
-        btn.className = tw`${baseClasses} ${sizeClasses} ${modeClasses}`;
-        btn.innerText = label;
+        btn.className = tw`${baseClasses} ${sizeClasses} ${modeClasses} slide-hover`;
+        btn.style.setProperty("--slide-hover-bg", hoverBg);
         if (backgroundColor) {
             btn.style.backgroundColor = backgroundColor;
         }
+
+        btn.textContent = label;
 
         this.appendChild(btn);
     }

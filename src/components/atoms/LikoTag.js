@@ -22,18 +22,24 @@ class LikoTag extends HTMLElement {
 
         const baseClasses = tw`inline-block rounded-lg font-nunito-sans text-xs leading-none font-semibold`;
 
-        const modeClasses = active ? tw`bg-foreground-80 text-white` : tw`bg-background-60 text-text`;
+        const modeClasses = active ? tw`bg-foreground-60 text-white` : tw`bg-background-80 text-text`;
 
         const interactiveClasses = toggleable
-            ? active
-                ? tw`cursor-pointer transition-colors select-none hover:bg-foreground-60`
-                : tw`cursor-pointer transition-colors select-none hover:bg-background-80`
+            ? tw`cursor-pointer select-none slide-hover`
             : "";
+
+        const hoverBg = active
+            ? "var(--color-foreground-80)"
+            : "var(--color-background-60)";
 
         this.innerHTML = "";
 
         const span = document.createElement("span");
         span.className = tw`${baseClasses} ${modeClasses} ${interactiveClasses} px-3 py-1.5`;
+        if (toggleable) {
+            span.style.setProperty("--slide-hover-bg", hoverBg);
+        }
+
         span.textContent = label;
 
         if (toggleable) {

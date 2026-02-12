@@ -23,8 +23,11 @@ class LikoStackCard extends HTMLElement {
         this.innerHTML = "";
 
         const card = document.createElement("div");
-        card.className = tw`relative overflow-hidden rounded-xl bg-background-100 shadow-lg`;
+        card.className = tw`rounded-xl border border-border bg-background-100 p-2 shadow-lg`;
         card.style.aspectRatio = "3 / 4";
+
+        const inner = document.createElement("div");
+        inner.className = tw`relative h-full w-full overflow-hidden rounded-lg`;
 
         if (imageSrc) {
             const img = document.createElement("img");
@@ -32,7 +35,7 @@ class LikoStackCard extends HTMLElement {
             img.alt = imageAlt;
             img.className = tw`absolute inset-0 h-full w-full object-cover`;
             img.draggable = false;
-            card.appendChild(img);
+            inner.appendChild(img);
         }
 
         if (caption) {
@@ -44,9 +47,10 @@ class LikoStackCard extends HTMLElement {
             text.textContent = caption;
             overlay.appendChild(text);
 
-            card.appendChild(overlay);
+            inner.appendChild(overlay);
         }
 
+        card.appendChild(inner);
         this.appendChild(card);
     }
 }

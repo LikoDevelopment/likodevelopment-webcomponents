@@ -106,7 +106,8 @@ class LikoCardStack extends HTMLElement {
 
     _createNavButton(direction) {
         const btn = document.createElement("button");
-        btn.className = tw`flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border-2 border-border bg-background-100 p-0 text-foreground-80 shadow-sm transition-colors hover:bg-background-60`;
+        btn.className = tw`flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border-2 border-border bg-background-100 p-0 text-foreground-80 shadow-sm slide-hover`;
+        btn.style.setProperty("--slide-hover-bg", "var(--color-background-60)");
         btn.setAttribute("aria-label", direction === "prev" ? "Previous card" : "Next card");
 
         const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
