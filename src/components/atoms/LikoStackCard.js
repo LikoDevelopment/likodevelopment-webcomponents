@@ -2,7 +2,7 @@ import { tw } from "../../utils/tw.js";
 
 class LikoStackCard extends HTMLElement {
     static get observedAttributes() {
-        return ["image-src", "image-alt", "caption"];
+        return ["image-src", "image-alt", "caption", "orientation"];
     }
 
     connectedCallback() {
@@ -24,7 +24,8 @@ class LikoStackCard extends HTMLElement {
 
         const card = document.createElement("div");
         card.className = tw`rounded-xl border border-border bg-background-100 p-2 shadow-lg`;
-        card.style.aspectRatio = "3 / 4";
+        const orientation = this.getAttribute("orientation") || "portrait";
+        card.style.aspectRatio = orientation === "landscape" ? "4 / 3" : "3 / 4";
 
         const inner = document.createElement("div");
         inner.className = tw`relative h-full w-full overflow-hidden rounded-lg`;
@@ -59,10 +60,11 @@ if (!customElements.get("liko-stack-card")) {
     customElements.define("liko-stack-card", LikoStackCard);
 }
 
-export const LikoStackCardExport = ({ imageSrc, imageAlt, caption }) => {
+export const LikoStackCardExport = ({ imageSrc, imageAlt, caption, orientation }) => {
     const el = document.createElement("liko-stack-card");
     if (imageSrc) el.setAttribute("image-src", imageSrc);
     if (imageAlt) el.setAttribute("image-alt", imageAlt);
     if (caption) el.setAttribute("caption", caption);
+    if (orientation) el.setAttribute("orientation", orientation);
     return el;
 };

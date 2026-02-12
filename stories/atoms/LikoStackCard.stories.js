@@ -8,6 +8,7 @@ export default {
         imageSrc: { control: "text" },
         imageAlt: { control: "text" },
         caption: { control: "text" },
+        orientation: { control: "select", options: ["portrait", "landscape"] },
     },
 };
 
@@ -23,5 +24,14 @@ export const WithCaption = {
         imageSrc: "https://placehold.co/400x530/627663/ffffff?text=Ocean",
         imageAlt: "Ocean view",
         caption: "A beautiful sunset over the calm ocean waves",
+    },
+};
+
+export const Landscape = {
+    args: {
+        imageSrc: "https://placehold.co/700x530/7d937e/ffffff?text=Panorama",
+        imageAlt: "Panoramic view",
+        caption: "A wide panoramic landscape view",
+        orientation: "landscape",
     },
 };

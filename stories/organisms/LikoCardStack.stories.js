@@ -8,6 +8,7 @@ export default {
     render: (args) => LikoCardStackExport(args),
     argTypes: {
         cards: { control: "object" },
+        orientation: { control: "select", options: ["portrait", "landscape"] },
     },
     args: { onCardChange: fn() },
 };
@@ -57,6 +58,33 @@ export const ImageOnly = {
             {
                 imageSrc: "https://placehold.co/400x530/7d937e/ffffff?text=3",
                 imageAlt: "Card three",
+            },
+        ],
+    },
+};
+
+export const Landscape = {
+    args: {
+        orientation: "landscape",
+        cards: [
+            {
+                imageSrc: "https://placehold.co/700x530/4a564b/ffffff?text=Mountains",
+                imageAlt: "Mountain landscape",
+                caption: "Escape to the serene mountains",
+            },
+            {
+                imageSrc: "https://placehold.co/700x530/627663/ffffff?text=Ocean",
+                imageAlt: "Ocean view",
+                caption: "Relax by the coast with golden sunsets",
+            },
+            {
+                imageSrc: "https://placehold.co/700x530/7d937e/ffffff?text=Forest",
+                imageAlt: "Forest path",
+                caption: "Discover hidden trails through ancient forests",
+            },
+            {
+                imageSrc: "https://placehold.co/700x530/322f2f/ffffff?text=City",
+                imageAlt: "City skyline",
             },
         ],
     },

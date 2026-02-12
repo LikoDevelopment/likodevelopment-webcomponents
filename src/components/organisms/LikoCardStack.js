@@ -2,6 +2,16 @@ import { tw } from "../../utils/tw.js";
 import "../atoms/LikoStackCard";
 
 class LikoCardStack extends HTMLElement {
+    static get observedAttributes() {
+        return ["orientation"];
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (oldValue !== newValue && this.isConnected) {
+            this.render();
+        }
+    }
+
     get cards() {
         return this._cards || [];
     }
@@ -47,8 +57,10 @@ class LikoCardStack extends HTMLElement {
         // --- Stack area ---
         const stackContainer = document.createElement("div");
         stackContainer.className = tw`relative w-full`;
-        stackContainer.style.maxWidth = "min(100%, 600px)";
-        stackContainer.style.aspectRatio = "3 / 4";
+        const orientation = this.getAttribute("orientation") || "portrait";
+        const isLandscape = orientation === "landscape";
+        stackContainer.style.maxWidth = isLandscape ? "min(100%, 800px)" : "min(100%, 600px)";
+        stackContainer.style.aspectRatio = isLandscape ? "4 / 3" : "3 / 4";
 
         this._stackContainer = stackContainer;
 
@@ -60,6 +72,7 @@ class LikoCardStack extends HTMLElement {
             if (card.imageSrc) el.setAttribute("image-src", card.imageSrc);
             if (card.imageAlt) el.setAttribute("image-alt", card.imageAlt);
             if (card.caption) el.setAttribute("caption", card.caption);
+            el.setAttribute("orientation", orientation);
 
             el.style.position = "absolute";
             el.style.inset = "0";
@@ -88,6 +101,7 @@ class LikoCardStack extends HTMLElement {
             const dot = document.createElement("button");
             dot.className = tw`h-2 w-2 rounded-full border-0 p-0 transition-colors`;
             dot.style.cursor = "pointer";
+            dot.setAttribute("aria-label", `Go to card ${i + 1}`);
             dot.addEventListener("click", () => this.goTo(i));
             dots.appendChild(dot);
             this._dots.push(dot);
@@ -277,8 +291,9 @@ if (!customElements.get("liko-card-stack")) {
     customElements.define("liko-card-stack", LikoCardStack);
 }
 
-export const LikoCardStackExport = ({ cards = [], onCardChange }) => {
+export const LikoCardStackExport = ({ cards = [], orientation, onCardChange }) => {
     const el = document.createElement("liko-card-stack");
+    if (orientation) el.setAttribute("orientation", orientation);
     el.cards = cards;
     if (onCardChange) el.addEventListener("card-change", onCardChange);
     return el;
