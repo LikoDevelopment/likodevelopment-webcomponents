@@ -50,10 +50,11 @@ class LikoFilterBar extends HTMLElement {
         }
 
         const tagsWrapper = document.createElement("div");
-        tagsWrapper.className = tw`flex flex-wrap gap-2`;
+        tagsWrapper.className = tw`flex flex-wrap items-center gap-2`;
 
         for (const tag of this.tags) {
             const el = document.createElement("liko-tag");
+            el.className = tw`flex`;
             el.setAttribute("label", tag);
             el.setAttribute("toggleable", "");
             if (this.activeTags.includes(tag)) {
