@@ -4,7 +4,7 @@ import "../organisms/LikoCardFilter";
 
 class LikoHomePage extends HTMLElement {
     static get observedAttributes() {
-        return ["title", "subtitle", "description", "filter-label"];
+        return ["title", "subtitle", "description", "filter-label", "filter-heading", "bottom-heading", "bottom-description"];
     }
 
     get stackCards() {
@@ -25,6 +25,15 @@ class LikoHomePage extends HTMLElement {
         if (this.isConnected) this.render();
     }
 
+    get textCards() {
+        return this._textCards || [];
+    }
+
+    set textCards(value) {
+        this._textCards = value;
+        if (this.isConnected) this.render();
+    }
+
     connectedCallback() {
         this.render();
     }
@@ -39,7 +48,11 @@ class LikoHomePage extends HTMLElement {
         const title = this.getAttribute("title") || "";
         const subtitle = this.getAttribute("subtitle") || "";
         const description = this.getAttribute("description") || "";
+        const description2 = this.getAttribute("description2") || "";
         const filterLabel = this.getAttribute("filter-label") || "";
+        const filterHeading = this.getAttribute("filter-heading") || "";
+        const bottomHeading = this.getAttribute("bottom-heading") || "";
+        const bottomDescription = this.getAttribute("bottom-description") || "";
 
         this.innerHTML = "";
 
@@ -71,6 +84,12 @@ class LikoHomePage extends HTMLElement {
             textCol.appendChild(p);
         }
 
+        if (description2) {
+            const p = document.createElement("p");
+            p.textContent = description2;
+            textCol.appendChild(p);
+        }
+
         hero.appendChild(textCol);
 
         if (this.stackCards.length > 0) {
@@ -91,12 +110,50 @@ class LikoHomePage extends HTMLElement {
             const filterSection = document.createElement("section");
             filterSection.className = tw`mt-16`;
 
+            if (filterHeading) {
+                const h2 = document.createElement("h2");
+                h2.textContent = filterHeading;
+                filterSection.appendChild(h2);
+            }
+
             const filter = document.createElement("liko-card-filter");
             if (filterLabel) filter.setAttribute("filter-label", filterLabel);
             filter.cards = this.filterCards;
             filterSection.appendChild(filter);
 
             wrapper.appendChild(filterSection);
+        }
+
+        // --- Bottom section: heading, text, text card stack ---
+        if (bottomHeading || this.textCards.length > 0) {
+            const bottomSection = document.createElement("section");
+            bottomSection.className = tw`mt-16`;
+
+            if (bottomHeading) {
+                const h2 = document.createElement("h2");
+                h2.textContent = bottomHeading;
+                bottomSection.appendChild(h2);
+            }
+
+            if (bottomDescription) {
+                const p = document.createElement("p");
+                p.textContent = bottomDescription;
+                bottomSection.appendChild(p);
+            }
+
+            if (this.textCards.length > 0) {
+                const stackWrapper = document.createElement("div");
+                stackWrapper.className = tw`mx-auto w-full max-w-[600px]`;
+
+                const stack = document.createElement("liko-card-stack");
+                stack.setAttribute("orientation", "landscape");
+                stack.cards = this.textCards;
+                stackWrapper.appendChild(stack);
+
+                bottomSection.appendChild(stackWrapper);
+            }
+
+            wrapper.appendChild(bottomSection);
         }
 
         this.appendChild(wrapper);
@@ -111,16 +168,26 @@ export const LikoHomePageExport = ({
     title,
     subtitle,
     description,
+    description2,
     filterLabel,
+    filterHeading,
+    bottomHeading,
+    bottomDescription,
     stackCards = [],
     filterCards = [],
+    textCards = [],
 }) => {
     const el = document.createElement("liko-home-page");
     if (title) el.setAttribute("title", title);
     if (subtitle) el.setAttribute("subtitle", subtitle);
     if (description) el.setAttribute("description", description);
+    if (description2) el.setAttribute("description2", description2);
     if (filterLabel) el.setAttribute("filter-label", filterLabel);
+    if (filterHeading) el.setAttribute("filter-heading", filterHeading);
+    if (bottomHeading) el.setAttribute("bottom-heading", bottomHeading);
+    if (bottomDescription) el.setAttribute("bottom-description", bottomDescription);
     el.stackCards = stackCards;
     el.filterCards = filterCards;
+    el.textCards = textCards;
     return el;
 };

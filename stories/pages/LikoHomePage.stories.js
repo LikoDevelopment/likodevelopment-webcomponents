@@ -8,9 +8,14 @@ export default {
         title: { control: "text" },
         subtitle: { control: "text" },
         description: { control: "text" },
+        description2: { control: "text" },
         filterLabel: { control: "text" },
+        filterHeading: { control: "text" },
+        bottomHeading: { control: "text" },
+        bottomDescription: { control: "text" },
         stackCards: { control: "object" },
         filterCards: { control: "object" },
+        textCards: { control: "object" },
     },
 };
 
@@ -19,8 +24,14 @@ export const Default = {
         title: "Welcome to Liko",
         subtitle: "Discover curated experiences",
         description:
-            "We bring together the finest destinations, activities and stories — handpicked for those who seek something extraordinary.",
+            "At Liko, we believe that every journey begins with a single moment of inspiration. Our platform brings together the finest destinations, activities, and stories from around the world — each one handpicked for those who seek something truly extraordinary. Whether you are drawn to the quiet majesty of snow-capped mountain peaks, the rhythmic calm of ocean waves at sunset, or the vibrant energy of a bustling city at night, we have something waiting for you.",
+        description2:
+            "Our team of passionate travelers and local experts works tirelessly to uncover hidden gems and craft experiences that go beyond the ordinary. From immersive cultural encounters to adrenaline-fueled adventures, every recommendation is rooted in authenticity and a deep respect for the places and people that make travel meaningful. We invite you to explore, dream, and plan your next unforgettable chapter with us. The world is vast, and the possibilities are endless — let Liko be your guide to discovering it all.",
+        filterHeading: "Explore Our Destinations",
         filterLabel: "Filter by category",
+        bottomHeading: "A Glimpse Into the Future",
+        bottomDescription:
+            "We are constantly evolving and expanding our horizons. Here are some hints about what is coming next — new destinations, innovative features, and experiences that will redefine the way you travel.",
         stackCards: [
             {
                 imageSrc: "https://placehold.co/400x530/4a564b/ffffff?text=Mountains",
@@ -83,6 +94,13 @@ export const Default = {
                 buttonLabel: "Explore",
                 tags: [{ label: "Adventure" }],
             },
+        ],
+        textCards: [
+            { textTitle: "AI Itineraries", text: "Personalised itineraries powered by AI — your perfect trip, planned in seconds." },
+            { textTitle: "Live Guides", text: "Live local guides connecting you with authentic experiences in real time." },
+            { textTitle: "Eco Scores", text: "Sustainable travel scores helping you make eco-conscious choices effortlessly." },
+            { textTitle: "AR Previews", text: "Augmented reality previews — explore destinations before you even pack your bags." },
+            { textTitle: "Community", text: "Community-driven recommendations from fellow travelers who share your passions." },
         ],
     },
 };

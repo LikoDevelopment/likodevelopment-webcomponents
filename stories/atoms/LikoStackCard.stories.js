@@ -9,6 +9,8 @@ export default {
         imageAlt: { control: "text" },
         caption: { control: "text" },
         orientation: { control: "select", options: ["portrait", "landscape"] },
+        text: { control: "text" },
+        textTitle: { control: "text" },
     },
 };
 
@@ -33,5 +35,12 @@ export const Landscape = {
         imageAlt: "Panoramic view",
         caption: "A wide panoramic landscape view",
         orientation: "landscape",
+    },
+};
+
+export const TextOnly = {
+    args: {
+        textTitle: "Dream Big",
+        text: "The future belongs to those who believe in the beauty of their dreams.",
     },
 };

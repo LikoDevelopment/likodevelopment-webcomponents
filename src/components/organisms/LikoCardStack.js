@@ -72,6 +72,8 @@ class LikoCardStack extends HTMLElement {
             if (card.imageSrc) el.setAttribute("image-src", card.imageSrc);
             if (card.imageAlt) el.setAttribute("image-alt", card.imageAlt);
             if (card.caption) el.setAttribute("caption", card.caption);
+            if (card.text) el.setAttribute("text", card.text);
+            if (card.textTitle) el.setAttribute("text-title", card.textTitle);
             el.setAttribute("orientation", orientation);
 
             el.style.position = "absolute";
