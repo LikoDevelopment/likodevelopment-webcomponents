@@ -126,7 +126,7 @@ class LikoHomePage extends HTMLElement {
         // --- Filter row ---
         if (this.filterCards.length > 0) {
             const filterSection = document.createElement("section");
-            filterSection.className = tw`mt-16`;
+            filterSection.className = tw`mt-16 xl:mt-24`;
 
             if (filterHeading) {
                 const h2 = document.createElement("h2");
@@ -145,7 +145,7 @@ class LikoHomePage extends HTMLElement {
         // --- Bottom section: heading, text, flip card grid ---
         if (bottomHeading || this.flipCards.length > 0) {
             const bottomSection = document.createElement("section");
-            bottomSection.className = tw`mt-16`;
+            bottomSection.className = tw`mt-16 xl:mt-24`;
 
             if (bottomHeading) {
                 const h2 = document.createElement("h2");

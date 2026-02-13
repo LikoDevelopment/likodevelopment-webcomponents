@@ -67,7 +67,7 @@ class LikoFlipCard extends HTMLElement {
         textWrapper.className = tw`flex flex-1 items-center overflow-y-auto`;
 
         const backText = document.createElement("p");
-        backText.className = tw`m-0 text-center text-sm leading-relaxed text-foreground-60 md:text-base`;
+        backText.className = tw`m-0 text-center text-sm leading-relaxed text-text md:text-base`;
         backText.textContent = text;
         textWrapper.appendChild(backText);
         back.appendChild(textWrapper);
