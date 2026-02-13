@@ -25,7 +25,7 @@ class LikoHeader extends HTMLElement {
         this.innerHTML = "";
 
         const wrapper = document.createElement("div");
-        wrapper.className = tw`flex items-center justify-between border-b border-black/10 px-5 py-[15px] font-nunito-sans`;
+        wrapper.className = tw`flex items-center justify-between border-b border-black/10 px-5 py-[15px]`;
 
         const logoDiv = document.createElement("div");
         logoDiv.innerHTML = `<svg class="${tw`inline-block align-top`}" width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">

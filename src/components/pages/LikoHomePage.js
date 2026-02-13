@@ -1,6 +1,7 @@
 import { tw } from "../../utils/tw.js";
 import "../organisms/LikoCardStack";
 import "../organisms/LikoCardFilter";
+import "../organisms/LikoFlipCardGrid";
 
 class LikoHomePage extends HTMLElement {
     static get observedAttributes() {
@@ -39,6 +40,15 @@ class LikoHomePage extends HTMLElement {
 
     set textCards(value) {
         this._textCards = value;
+        if (this.isConnected) this.render();
+    }
+
+    get flipCards() {
+        return this._flipCards || [];
+    }
+
+    set flipCards(value) {
+        this._flipCards = value;
         if (this.isConnected) this.render();
     }
 
@@ -132,8 +142,8 @@ class LikoHomePage extends HTMLElement {
             wrapper.appendChild(filterSection);
         }
 
-        // --- Bottom section: heading, text, text card stack ---
-        if (bottomHeading || this.textCards.length > 0) {
+        // --- Bottom section: heading, text, flip card grid ---
+        if (bottomHeading || this.flipCards.length > 0) {
             const bottomSection = document.createElement("section");
             bottomSection.className = tw`mt-16`;
 
@@ -149,16 +159,10 @@ class LikoHomePage extends HTMLElement {
                 bottomSection.appendChild(p);
             }
 
-            if (this.textCards.length > 0) {
-                const stackWrapper = document.createElement("div");
-                stackWrapper.className = tw`mx-auto w-full max-w-[600px]`;
-
-                const stack = document.createElement("liko-card-stack");
-                stack.setAttribute("orientation", "landscape");
-                stack.cards = this.textCards;
-                stackWrapper.appendChild(stack);
-
-                bottomSection.appendChild(stackWrapper);
+            if (this.flipCards.length > 0) {
+                const grid = document.createElement("liko-flip-card-grid");
+                grid.cards = this.flipCards;
+                bottomSection.appendChild(grid);
             }
 
             wrapper.appendChild(bottomSection);
@@ -184,6 +188,7 @@ export const LikoHomePageExport = ({
     stackCards = [],
     filterCards = [],
     textCards = [],
+    flipCards = [],
 }) => {
     const el = document.createElement("liko-home-page");
     if (title) el.setAttribute("title", title);
@@ -197,5 +202,6 @@ export const LikoHomePageExport = ({
     el.stackCards = stackCards;
     el.filterCards = filterCards;
     el.textCards = textCards;
+    el.flipCards = flipCards;
     return el;
 };

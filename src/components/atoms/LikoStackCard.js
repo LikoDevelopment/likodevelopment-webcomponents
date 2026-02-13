@@ -38,13 +38,13 @@ class LikoStackCard extends HTMLElement {
             const textTitle = this.getAttribute("text-title");
             if (textTitle) {
                 const h = document.createElement("p");
-                h.className = tw`text-center font-nunito-sans text-xl leading-snug font-bold text-text`;
+                h.className = tw`text-center text-xl leading-snug font-bold text-text`;
                 h.textContent = textTitle;
                 inner.appendChild(h);
             }
 
             const p = document.createElement("p");
-            p.className = tw`text-center font-nunito-sans text-lg leading-relaxed text-text`;
+            p.className = tw`text-center text-lg leading-relaxed text-text`;
             p.textContent = text;
             inner.appendChild(p);
         } else {
@@ -62,7 +62,7 @@ class LikoStackCard extends HTMLElement {
                 overlay.className = tw`absolute right-0 bottom-0 left-0 bg-white/60 px-4 py-3 backdrop-blur-sm`;
 
                 const p = document.createElement("p");
-                p.className = tw`font-nunito-sans text-sm leading-snug text-text`;
+                p.className = tw`text-sm leading-snug text-text`;
                 p.textContent = caption;
                 overlay.appendChild(p);
 

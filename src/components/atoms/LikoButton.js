@@ -21,7 +21,7 @@ class LikoButton extends HTMLElement {
         const size = this.getAttribute("size") || "medium";
         const label = this.getAttribute("label");
 
-        const baseClasses = tw`inline-block cursor-pointer rounded-3xl border-0 font-nunito-sans leading-none font-bold`;
+        const baseClasses = tw`inline-block cursor-pointer rounded-3xl border-0 leading-none font-bold`;
 
         let sizeClasses = "";
         switch (size) {

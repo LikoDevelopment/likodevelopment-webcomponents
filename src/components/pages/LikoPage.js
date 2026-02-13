@@ -33,7 +33,7 @@ class LikoPage extends HTMLElement {
         article.appendChild(header);
 
         const section = document.createElement("section");
-        section.className = tw`mx-auto max-w-[600px] px-5 py-12 font-nunito-sans text-sm leading-6 text-[#333]`;
+        section.className = tw`mx-auto max-w-[600px] px-5 py-12 text-sm leading-6 text-[#333]`;
 
         section.innerHTML = `
     <h2>Pages in Storybook</h2>

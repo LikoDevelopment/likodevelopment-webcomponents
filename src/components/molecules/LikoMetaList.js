@@ -18,7 +18,7 @@ class LikoMetaList extends HTMLElement {
         this.innerHTML = "";
 
         const list = document.createElement("dl");
-        list.className = tw`flex flex-col gap-4 font-nunito-sans`;
+        list.className = tw`flex flex-col gap-4`;
 
         for (const item of this.items) {
             const group = document.createElement("div");

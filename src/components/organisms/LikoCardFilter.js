@@ -32,7 +32,6 @@ class LikoCardFilter extends HTMLElement {
         const allTags = [...new Set(this.cards.flatMap((card) => (card.tags || []).map((t) => t.label)))].sort();
 
         const wrapper = document.createElement("div");
-        wrapper.className = tw`font-nunito-sans`;
 
         const filterLabel = this.getAttribute("filter-label");
 

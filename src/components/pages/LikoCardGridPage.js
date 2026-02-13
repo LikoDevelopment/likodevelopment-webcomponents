@@ -34,7 +34,7 @@ class LikoCardGridPage extends HTMLElement {
         this.innerHTML = "";
 
         const wrapper = document.createElement("div");
-        wrapper.className = tw`mx-auto max-w-6xl px-6 py-12 font-nunito-sans`;
+        wrapper.className = tw`mx-auto max-w-6xl px-6 py-12`;
 
         const h1 = document.createElement("h1");
         h1.textContent = title;

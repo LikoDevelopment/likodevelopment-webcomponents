@@ -20,7 +20,7 @@ class LikoTag extends HTMLElement {
         const toggleable = this.hasAttribute("toggleable");
         const active = this.hasAttribute("active");
 
-        const baseClasses = tw`inline-block rounded-lg font-nunito-sans text-xs leading-none font-semibold`;
+        const baseClasses = tw`inline-block rounded-lg text-xs leading-none font-semibold`;
 
         const modeClasses = active ? tw`bg-foreground-60 text-white` : tw`bg-background-80 text-text`;
 

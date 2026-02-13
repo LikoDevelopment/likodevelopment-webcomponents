@@ -1,4 +1,5 @@
 import { tw } from "../../utils/tw.js";
+import { createIcon } from "../../utils/icons.js";
 import "../atoms/LikoStackCard";
 
 class LikoCardStack extends HTMLElement {
@@ -126,24 +127,8 @@ class LikoCardStack extends HTMLElement {
         btn.style.setProperty("--slide-hover-bg", "var(--color-background-60)");
         btn.setAttribute("aria-label", direction === "prev" ? "Previous card" : "Next card");
 
-        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-        svg.setAttribute("width", "18");
-        svg.setAttribute("height", "18");
-        svg.setAttribute("viewBox", "0 0 24 24");
-        svg.setAttribute("fill", "none");
-        svg.setAttribute("stroke", "currentColor");
-        svg.setAttribute("stroke-width", "2.5");
-        svg.setAttribute("stroke-linecap", "round");
-        svg.setAttribute("stroke-linejoin", "round");
-
-        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-        if (direction === "prev") {
-            path.setAttribute("d", "M15 18l-6-6 6-6");
-        } else {
-            path.setAttribute("d", "M9 18l6-6-6-6");
-        }
-        svg.appendChild(path);
-        btn.appendChild(svg);
+        const iconName = direction === "prev" ? "chevron-left" : "chevron-right";
+        btn.appendChild(createIcon(iconName));
 
         btn.addEventListener("click", () => {
             if (direction === "prev") this.goPrev();

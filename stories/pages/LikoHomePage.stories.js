@@ -16,6 +16,7 @@ export default {
         stackCards: { control: "object" },
         filterCards: { control: "object" },
         textCards: { control: "object" },
+        flipCards: { control: "object" },
     },
 };
 
@@ -95,26 +96,22 @@ export const Default = {
                 tags: [{ label: "Adventure" }],
             },
         ],
-        textCards: [
+        flipCards: [
             {
-                textTitle: "AI Itineraries",
-                text: "Personalised itineraries powered by AI — your perfect trip, planned in seconds.",
+                heading: "AI Itineraries",
+                text: " Do not just generate fast output. Review it carefully and ensure consistency across the system. Build in safeguards: testing, validation, and alignment with architecture. What we build today should still be reliable tomorrow.",
             },
             {
-                textTitle: "Live Guides",
+                heading: "Live Guides",
                 text: "Live local guides connecting you with authentic experiences in real time.",
             },
             {
-                textTitle: "Eco Scores",
+                heading: "Eco Scores",
                 text: "Sustainable travel scores helping you make eco-conscious choices effortlessly.",
             },
             {
-                textTitle: "AR Previews",
+                heading: "AR Previews",
                 text: "Augmented reality previews — explore destinations before you even pack your bags.",
-            },
-            {
-                textTitle: "Community",
-                text: "Community-driven recommendations from fellow travelers who share your passions.",
             },
         ],
     },

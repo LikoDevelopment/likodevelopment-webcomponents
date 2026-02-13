@@ -44,7 +44,7 @@ class LikoFilterBar extends HTMLElement {
 
         if (label) {
             const labelEl = document.createElement("span");
-            labelEl.className = tw`font-nunito-sans text-base font-semibold`;
+            labelEl.className = tw`text-base font-semibold`;
             labelEl.textContent = label;
             wrapper.appendChild(labelEl);
         }
